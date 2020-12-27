@@ -26,7 +26,7 @@ Generate a sitemap file
 `);
 } else if (argv["--base-url"]) {
   console.log(`
-    Creating sitemap.xml for base url: ${argv["--base-url"]}
+Creating sitemap.xml for base url: ${argv["--base-url"]}
   `);
-  console.log(main({ baseUrl: argv["--base-url"] }));
+  main({ baseUrl: argv["--base-url"] });
 }

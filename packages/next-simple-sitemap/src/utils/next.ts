@@ -6,7 +6,11 @@ export function getNextConfig() {
   return load(configPath);
 }
 
-export function getNextRoutes() {
+interface NextRouteDefinition {
+  page: string;
+}
+
+export function getNextRoutes(): NextRouteDefinition[] {
   const nextConfig = getNextConfig();
   const nextBuildDir =
     nextConfig && nextConfig.distDir ? nextConfig.distDir : ".next";
@@ -14,5 +18,5 @@ export function getNextRoutes() {
     path.join(process.cwd(), nextBuildDir, "routes-manifest.json")
   );
 
-  return routesManifest;
+  return routesManifest.dataRoutes;
 }
