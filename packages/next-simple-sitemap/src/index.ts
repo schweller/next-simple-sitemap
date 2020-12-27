@@ -1,25 +1,12 @@
-import fs from "fs";
-import path from "path";
+import { getNextRoutes } from "./utils/next";
 
-function loadFile(path: string) {
-  if (fs.existsSync(path)) {
-    return require(path);
+type DefaultOptions = {
+  baseUrl: string;
+};
+
+export function main(opts: DefaultOptions) {
+  if (!opts.baseUrl) {
+    throw new Error("No baseUrl was defined");
   }
-}
-
-export function getNextConfig(basePath: string) {
-  const configPath = path.resolve(basePath, "./next.config.js");
-  return loadFile(configPath);
-}
-
-export function readRoutes() {
-  const nextConfig = getNextConfig(process.cwd());
-  const nextBuildDir =
-    nextConfig && nextConfig.distDir ? nextConfig.distDir : ".next";
-  return nextBuildDir;
-  // to implement:
-  // const routesManifestSrc = "./.next/routes-manifest.json";
-  // const routes = fs.readFileSync(routesManifestSrc);
-  // const { dataRoutes } = JSON.parse(Buffer.from(routes).toString());
-  // return dataRoutes;
+  return getNextRoutes();
 }
