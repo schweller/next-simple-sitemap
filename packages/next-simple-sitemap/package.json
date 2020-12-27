@@ -2,18 +2,28 @@
   "name": "next-simple-sitemap",
   "version": "0.0.1",
   "main": "dist/cjs/index.js",
+  "bin": {
+    "next-simple-sitemap": "dist/cjs/cli.js"
+  },
   "author": "Inacio Schweller",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/schweller/next-simple-sitemap.git"
   },
   "scripts": {
+    "build": "concurrently yarn:build:*",
     "build:esm": "cross-env BABEL_ENV=esm babel src --root-mode upward --extensions .ts,.tsx -d dist/esm --source-maps",
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --root-mode upward --extensions .ts,.tsx -d dist/cjs --source-maps",
     "test": "jest --passWithNoTests",
     "lint:src": "eslint src --ext .ts --config ../../.eslintrc",
     "lint:types": "tsc --noEmit",
     "lint": "concurrently yarn:lint:*"
+  },
+  "dependencies": {
+    "sitemap": "^6.3.5"
   }
 }

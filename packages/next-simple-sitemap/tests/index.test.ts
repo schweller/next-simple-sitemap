@@ -1,5 +1,6 @@
-import { hello } from "../src";
+import { getNextConfig } from "../src";
 
 test("should hello world", () => {
-  expect(hello()).toEqual("hello world");
+  const config = getNextConfig(__dirname);
+  expect(config).toBe(undefined);
 });
