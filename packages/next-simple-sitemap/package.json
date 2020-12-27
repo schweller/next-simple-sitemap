@@ -1,6 +1,6 @@
 {
   "name": "next-simple-sitemap",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/cjs/index.js",
   "bin": {
     "next-simple-sitemap": "dist/cjs/cli.js"
